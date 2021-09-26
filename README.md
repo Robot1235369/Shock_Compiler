@@ -1,2 +1,2 @@
-# Squirrel_Compiler
-Homemade programming language called Squirrel
+# Shock_Compiler
+Homemade programming language called Shock
