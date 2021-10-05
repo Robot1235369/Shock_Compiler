@@ -74,7 +74,7 @@ class Compiler {
                         fun_x++;
                     // if it is a variable
                     } else {
-                        if (data_list[2] == "=") {
+                        if (data_list.length > 3 && data_list[2] == "=") {
 
                             switch (data_list[0]) {
                                 case "int":
@@ -90,12 +90,12 @@ class Compiler {
                                 case "float":
                                     vars[var_x] = new Float;
                                     vars[var_x].name = data_list[1];
-                                    vars[var_x].value = Integer.parseInt(data_list[3]);
+                                    vars[var_x].value = Float.parseFloat(data_list[3]);
                                     break;
                                 case "bool":
                                     vars[var_x] = new Bool;
                                     vars[var_x].name = data_list[1];
-                                    vars[var_x].value = Integer.parseInt(data_list[3]);
+                                    vars[var_x].value = Boolean.parseBoolean(data_list[3]);
                                     break;
                             }
                         } else {
