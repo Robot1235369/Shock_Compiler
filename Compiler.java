@@ -78,22 +78,22 @@ class Compiler {
 
                             switch (data_list[0]) {
                                 case "int":
-                                    vars[var_x] = new integer;
+                                    vars[var_x] = new integer();
                                     vars[var_x].name = data_list[1];
                                     vars[var_x].value = Integer.parseInt(data_list[3]);
                                     break;
                                 case "String":
-                                    vars[var_x] = new string;
+                                    vars[var_x] = new string();
                                     vars[var_x].name = data_list[1];
                                     vars[var_x].value = data_list[3];
                                     break;
                                 case "float":
-                                    vars[var_x] = new Float;
+                                    vars[var_x] = new Float();
                                     vars[var_x].name = data_list[1];
                                     vars[var_x].value = Float.parseFloat(data_list[3]);
                                     break;
                                 case "bool":
-                                    vars[var_x] = new Bool;
+                                    vars[var_x] = new Bool();
                                     vars[var_x].name = data_list[1];
                                     vars[var_x].value = Boolean.parseBoolean(data_list[3]);
                                     break;
@@ -101,68 +101,6 @@ class Compiler {
                         } else {
                             error(line, data, "expected '='");
                         }
-                    }
-
-                    // read first line of code, excluding the empty ones
-                    do {
-                        line++;
-                        data = read(data, line, Reader);
-                    } while (data.equals(""));
-
-                    // initializing array to hold a split version of the line currently being analized
-                    String[] data_list = data.split(" ");
-
-                    // code for if the first line of code is an import statement
-                    if (data_list[0] == "import") {
-
-                    // code for if the first line of code is the initialization of a variable or a function
-                    } else if (data_list[0] == "int" || data_list[0] == "float" || data_list[0] == "String" || data_list[0] == "Boolean") {
-                        // check if it is a function
-                        if (data_list.asList().contains("(")) {
-                            String[] data1 = data_list[1];
-                            // the code will save the name of the function and everything inside it to a 2d array called functions
-                            String[] data2 = data_list[1].split("(");
-                            functions[x][y] = data2[0];
-                            y++;
-                            data = "{";
-                            while (data != "}") {
-                                if (data != "{") {
-                                    functions[x][y] = data;
-                                    y++;
-                                }
-                                data = read(data, line, Reader);
-                                line++;
-                            }
-                        // if it is a variable
-                        } else {
-
-                        }
-                    // check if it is a function that starts with "void"
-                    } else if (data_list[0] == "void") {
-                        // check if it is the main function
-                        if (data1[0] == "m" && data1[1] == "a" && data1[2] == "i" && data1[3] == "n") {
-
-                        } else {
-                            String[] data1 = data_list[1];
-                            if (data1[0] == "m" && data1[1] == "a" && data1[2] == "i" && data1[3] == "n") {
-
-                            } else {
-                                String[] data2 = data_list[1].split("(");
-                                functions[x][y] = data2[0];
-                                y++;
-                                data = "{";
-                                while (data != "}") {
-                                    if (data != "{") {
-                                        functions[x][y] = data;
-                                        y++;
-                                    }
-                                    data = read(data, line, Reader);
-                                    line++;
-                                }
-                            }
-                        }
-                    } else {
-                        error(line, data, "Unidentified Syntax");
                     }
             
             } while(Reader.hasNextLine());
