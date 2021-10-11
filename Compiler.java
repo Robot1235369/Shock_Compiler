@@ -39,7 +39,7 @@ class Compiler {
 
             do {
 
-                if (Reader.hasNextLine == false) {
+                if (Reader.hasNext() == false) {
                     break;
             
                 do {
@@ -56,8 +56,8 @@ class Compiler {
                 // code for if the first line of code is the initialization of a variable or a function
                 } else if (data_list[0] == "int" || data_list[0] == "float" || data_list[0] == "String" || data_list[0] == "Boolean") {
                     // check if it is a function
-                    if (data_list.asList().contains("(")) {
-                        String[] data1 = data_list[1];
+                    List<String> Data_List = Arrays.asList(data_list);                   
+                    if (Data_List.contains("{")) {
                         // the code will save the name of the function and everything inside it to a 2d array called functions
                         String[] data2 = data_list[1].split("(");
                         functions[fun_x][fun_y] = data2[0];
@@ -111,6 +111,7 @@ class Compiler {
         } catch (Exception E) {
             //System.out.println(E);
         }
+        }
     }
 
     public static String read(String data, int line, Scanner Reader) {
@@ -127,24 +128,4 @@ class Compiler {
         System.out.println(reason);
         System.exit(0);
     }
-}
-
-public class variables {
-    String name;
-}
-
-public class integers extends variables {
-    int value;
-}
-
-public class string extends variables {
-    String value;
-}
-
-public class Float extends variables {
-    float value;
-}
-
-public class Bool extends variables {
-    boolean value;
 }
