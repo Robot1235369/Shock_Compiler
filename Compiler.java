@@ -41,7 +41,8 @@ class Compiler {
 
                 if (Reader.hasNext() == false) {
                     break;
-            
+                }
+
                 do {
                     line++;
                     data = read(data, line, Reader);
@@ -102,7 +103,7 @@ class Compiler {
                             error(line, data, "expected '='");
                         }
                     }
-            
+                }
             } while(Reader.hasNextLine());
 
             Reader.close();
@@ -110,7 +111,6 @@ class Compiler {
             //System.out.println(e);
         } catch (Exception E) {
             //System.out.println(E);
-        }
         }
     }
 
